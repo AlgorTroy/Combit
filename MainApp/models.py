@@ -1,13 +1,18 @@
-from django.db import models
-from django.contrib.auth.models import User
-# from django.utils import timezone
-# Create your models here
+from mongoengine import *
+import datetime
 
 
-class Tile(models.Model):
-    title = models.CharField(blank=True, max_length=100)
-    open_jobs = models.IntegerField(blank=True, null=True)
-    short_desc = models.CharField(blank=True, max_length=200)
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
-    posted_by = models.ForeignKey(User)
+connect('CombitDb')
+class User(Document):
+    email = StringField(required=True)
+    user_name = StringField(max_length=50, required=True)
+    password = StringField(max_length=50)
+    location =  GeoPointField()
+    rating = IntField()
+    created_date = DateTimeField()
+    is_active = BooleanField(default=False)
+
+
+""" HINTS:
+User("test@mail.com", "abc", "xyz", [21.1232,23.23432], 10, datetime.datetime.now(), True).save()
+"""

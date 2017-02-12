@@ -75,13 +75,17 @@ WSGI_APPLICATION = 'PartTimeJobFinder.wsgi.application'
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'CombitDB',
-        'USER': 'postgres',
-        'PASSWORD':  'Luffy@23',
-        'HOST': 'localhost',
-        'PORT': '',
+     'default': {
+    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #     'NAME': 'CombitDB',
+    #     'USER': 'postgres',
+    #     'PASSWORD':  'Luffy@23',
+    #     'HOST': 'localhost',
+    #     'PORT': '',
+
+
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'CombitDB.db'),
     }
 }
 

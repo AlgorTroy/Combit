@@ -14,8 +14,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url, include
-from MainApp.views import logout_page, register, register_success, home
-from django.contrib.auth.views import login
+from MainApp.views import logout_page, register, home, login
+# from django.contrib.auth.views import login
 from django.contrib import admin
 from MainApp import views
 
@@ -27,10 +27,11 @@ from MainApp import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', login),
+    url(r'^$', views.home, name='home'),
+    # url(r'^login/$', login, name='login'),
     url(r'^logout/$', logout_page, name='logout_page'),
     url(r'^accounts/login/$', login), # If user is not login it will redirect to login page
     url(r'^register/$', register, name='register'),
-    url(r'^register/success/$', register_success, name='register_success'),
     url(r'^home/$', home, name='home'),
+    url(r'^login/$', views.user_login, name='login'),
 ]

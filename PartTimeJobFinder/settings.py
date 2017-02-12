@@ -76,12 +76,16 @@ WSGI_APPLICATION = 'PartTimeJobFinder.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': '',
-        'NAME': '',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'CombitDB',
+        'USER': 'postgres',
+        'PASSWORD':  'Luffy@23',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
-SESSION_ENGINE = 'mongoengine.django.sessions'
+# SESSION_ENGINE = 'mongoengine.django.sessions'
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators

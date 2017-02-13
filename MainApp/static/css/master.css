@@ -96,21 +96,20 @@ body {
         }
 
         #thumbnail_container {
-            padding-top: 30px;
+            padding-top: 50px;
             padding-bottom: 30px;
         }
 
         .thumbnail {
             text-align: center;
-            color: #26ae61;
-            font-color: #344057;
+            background-color: #26ae61;
             font-weight: bold;
+            color:white;
         }
 
         .thumbnail:hover {
-            background-color: #26ae61;
-            color: white;
-            font-color: white;
+            color: #26ae61;
+
         }
 
         #msg_banner {

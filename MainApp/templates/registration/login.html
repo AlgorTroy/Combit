@@ -1,9 +1,32 @@
-{% extends "base.html" %} {% block title %}Log-in{% endblock %} {% block content %}
-<h1>Log-in</h1>
-<p>Please, use the following form to log-in:</p>
-<form action="." method="post">
-    {{ form.as_p }} {% csrf_token %}
-    <p>
-        <input type="submit" value="Log-in"></p>
-</form>
-{% endblock %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"> {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://use.fontawesome.com/a3ec1b34e4.js"></script>
+</head>
+
+<body>
+
+    <div class="login-page">
+        <div class="form">
+            <form action="." method="post">
+                {{ form.as_p}} {% csrf_token %}
+                <p><input id="default_btn" class="form-control" placeholder="login" type="submit" value="Log-in"></p>
+                <h3 class="message">Not registered? <a href="/register/">Create an account</a></h3>
+                <h3 class="message">Forgot password? <a href="/register/">Click here</a></h3>
+            </form>
+        </div>
+    </div>
+  
+</body>
+
+</html>

@@ -1,0 +1,164 @@
+body {
+            /*background-color: rgb(000,0,0);*/
+        }
+
+        #banner {
+            background-image: url(https://static.pexels.com/photos/2097/desk-office-pen-ruler.jpg);
+            /*background-color: rgba(000,0,0,0.5);*/
+            background-size: cover;
+            /* <------ */
+            background-repeat: no-repeat;
+            background-position: center;
+            width: 100%;
+            height: 400px;
+        }
+
+        #default_btn {
+            color: black;
+            font-weight: bold;
+            border: None;
+        }
+
+        #default_btn:hover {
+            background-color: #26ae61;
+            color: #ffffff;
+        }
+
+        #main_nav_bar {
+            width: 100%;
+            top: 0;
+            overflow: hidden;
+            background-color: rgba(38, 174, 97, 0.8);
+            /*background-color:#f0f000; */
+            border: none;
+            position: fixed;
+            transition-duration: 1s;
+            margin-left: -15px;
+            z-index: 9999;
+        }
+
+        #menu_nav {
+            opacity: 1;
+        }
+
+        #main_nav_bar a {
+            color: white;
+            background: transparent;
+            font-weight: bold;
+            border-radius: 3px;
+        }
+
+        #active {
+            color: #ffffff;
+            font-weight: bold;
+            background-color: #26ae61;
+            border: None;
+        }
+
+        #main_nav_bar a:hover {
+            background-color: #344057;
+            color: white;
+            opacity: 0.7;
+        }
+
+        #form_control {
+            box-sizing: border-box;
+            color: black;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 300px;
+            height: 50px;
+            font-weight: bold;
+            opacity: 0.9;
+            /* 	background: transparent; */
+        }
+
+        #form_container_banner {
+            /*padding-left: 100px;*/
+            margin-left: 20%;
+            margin-top: 15%;
+        }
+
+        #form_control:focus {
+            opacity: 1;
+        }
+
+        #search_btn {
+            width: 50px;
+            height: 50px;
+            font-size: 22px;
+            opacity: 0.7;
+            color: #26ae61;
+        }
+
+        #search_btn:hover {
+            opacity: 0.9;
+        }
+
+        #thumbnail_container {
+            padding-top: 30px;
+            padding-bottom: 30px;
+        }
+
+        .thumbnail {
+            text-align: center;
+            color: #26ae61;
+            font-color: #344057;
+            font-weight: bold;
+        }
+
+        .thumbnail:hover {
+            background-color: #26ae61;
+            color: white;
+            font-color: white;
+        }
+
+        #msg_banner {
+            background-color: #26ae61;
+            color: white;
+            width: 100%;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            padding-top: 8px;
+        }
+
+        #browse_category_btn a {
+            display: block;
+            text-decoration: none;
+            background-color: #8cb3bd;
+            color: white;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        #resume_upload_banner {
+            background-color: #3d6d8a;
+            width: 100%;
+        }
+
+        #resume_upload_banner h2 {
+            color: white;
+        }
+
+        #random_image {
+            background-image: url(https://static.pexels.com/photos/27458/pexels-photo-27458.jpg);
+            width: 100%;
+            height: 400px;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            /* 	-webkit-filter: blur(2px);
+-moz-filter: blur(2px) ;
+-ms-filter:  blur(2px);
+-o-filter: blur(2px) ;
+filter:  blur(2px); */
+        }
+
+        footer {
+            background-color: #202020;
+            width: 100%;
+            height: 200px;
+            color: white;
+        }

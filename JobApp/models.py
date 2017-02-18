@@ -56,7 +56,7 @@ class Job(models.Model):
 
     class Meta:
         ordering = ['-updated_at']
->>>>>>> 30cd2418c8754f66c9285977466e9b6a6e7d352a
+
 
     def __str__(self):
         return self.title

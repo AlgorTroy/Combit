@@ -34,5 +34,6 @@ urlpatterns = [
     url(r'^register/$', register, name='register'),
     url(r'^login/$', user_login, name='login'),
     url(r'^job/upload/$', upload_job, name='upload_job'),
-    url(r'^jobs/by/category/(?P<slug>[\w]+)/$', jobs_by_category, name='jobs_by_category'),
+    url(r'^jobs/by/category/(?P<slug>[-\w]+)/$', jobs_by_category, name='jobs_by_category'),
+    url(r'^jobs/by/user/(?P<username>[a-zA-Z0-9_]+)/$', jobs_by_user, name='jobs_by_user'),
 ]

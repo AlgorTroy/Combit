@@ -1,0 +1,11 @@
+{% for job in jobs %}
+<h1> {{ job.title }}</h1>
+<h3>Category: {{job.category}}</h3>
+  <p>{{job.created_at}}</p>
+  <p>Added by : {{job.user}}</p>
+  <p>{{job.details}}</p>
+
+  <br>
+{% endfor %}
+
+{% include "job/pagination.html" with page=jobs %}

@@ -64,10 +64,10 @@ def user_login(request):
                 if user.is_active:
                     login(request, user)
                     redirect = request.session['next']
-                    print("++++++++++++++++++++++++++", redirect)
                     del request.session['next']
+                    if redirect == '':
+                        redirect = '/'
 
-                    print('==================', request.GET.get('next'))
                     return HttpResponseRedirect(redirect, {'user': user})
                 else:
                     return HttpResponse('Disabled account')
@@ -76,6 +76,5 @@ def user_login(request):
     else:
         redirect = request.GET.get('next', '')
         request.session['next'] = redirect
-        print('this?', redirect)
         form = LoginForm()
         return render(request, 'registration/login.html', {'form': form})

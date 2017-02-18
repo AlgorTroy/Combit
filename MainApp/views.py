@@ -11,6 +11,7 @@ from .forms import LoginForm
 from django.contrib.staticfiles.templatetags.staticfiles import static
 from JobApp.models import Job
 from django.contrib import messages
+from django.contrib.auth.models import User
 
 
 # redirect = ''
@@ -85,3 +86,8 @@ def user_login(request):
         request.session['next'] = to_redirect
         form = LoginForm()
         return render(request, 'registration/login.html', {'form': form})
+
+
+def about(request):
+    users = User.objects.all()
+    return render(request, 'about/about.html', {'users': users})

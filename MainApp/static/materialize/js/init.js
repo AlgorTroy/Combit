@@ -40,4 +40,13 @@ $(document).ready(function() {
         }
     });
 
+    var ctrg_exp_icon_anim = 'animated pulse';
+    $('#category_explore_icon').hover(function() {
+      /* Stuff to do when the mouse enters the element */
+      $(this).addClass(ctrg_exp_icon_anim);
+    }, function() {
+      /* Stuff to do when the mouse leaves the element */
+      $(this).removeClass(ctrg_exp_icon_anim);
+    });
+
 });

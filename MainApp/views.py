@@ -9,11 +9,9 @@ from django.template import RequestContext
 from django.contrib.auth import authenticate, login
 from .forms import LoginForm
 from django.contrib.staticfiles.templatetags.staticfiles import static
-<<<<<<< HEAD
 from JobApp.models import Job
-=======
 from django.contrib import messages
->>>>>>> 30cd2418c8754f66c9285977466e9b6a6e7d352a
+
 
 # redirect = ''
 

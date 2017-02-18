@@ -52,7 +52,11 @@ class Job(models.Model):
     slug = models.SlugField(max_length=250, blank=True)
     tags = TaggableManager()
     type = models.CharField(max_length=10, choices=job_types, default='part_time')
-    dummy = models.CharField(blank=True, max_length=100)
+    payment = models.IntegerField(default=0)
+
+    class Meta:
+        ordering = ['-updated_at']
+>>>>>>> 30cd2418c8754f66c9285977466e9b6a6e7d352a
 
     def __str__(self):
         return self.title
@@ -61,11 +65,12 @@ class Job(models.Model):
 class Application(models.Model):
     choices = (
         ('open', 'Open'),
-        ('rejected', 'rejected'),
-        ('selected', 'selected'),
-        ('taken', 'taken'),
-        ('closed', 'closed'),
-        ('completed', 'completed')
+        ('rejected', 'Rejected'),
+        ('selected', 'Selected'),
+        ('taken', 'Taken'),
+        ('closed', 'Closed'),
+        ('completed', 'Completed'),
+        ('applied', 'Applied')
     )
     user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
     job = models.ForeignKey(Job, null=True, on_delete=models.SET_NULL)

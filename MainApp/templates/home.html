@@ -18,6 +18,17 @@
 </head>
 
 <body>
+  <a href="job/notify/AzurAthena">notify with email</a>
+  {% if messages %}
+<ul class="messages">
+{% for message in messages %}
+<li class="{{ message.tags }}">
+{{ message|safe }}
+<a href="#" class="close">✖</a>
+</li>
+{% endfor %}
+</ul>
+{% endif %}
     <!--Import jQuery before materialize.js-->
     {% load static %}
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>

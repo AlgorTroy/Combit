@@ -9,7 +9,11 @@ from django.template import RequestContext
 from django.contrib.auth import authenticate, login
 from .forms import LoginForm
 from django.contrib.staticfiles.templatetags.staticfiles import static
+<<<<<<< HEAD
 from JobApp.models import Job
+=======
+from django.contrib import messages
+>>>>>>> 30cd2418c8754f66c9285977466e9b6a6e7d352a
 
 # redirect = ''
 
@@ -45,8 +49,7 @@ def register(request):
             return HttpResponseRedirect('/')
     else:
         form = RegistrationForm()
-
-    return render(request, 'registration/register.html', {'form': form})
+        return render(request, 'registration/register.html', {'form': form})
 
 
 def logout_page(request):
@@ -67,18 +70,20 @@ def user_login(request):
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    redirect = request.session['next']
+                    to_redirect = request.session['next']
                     del request.session['next']
-                    if redirect == '':
-                        redirect = '/'
+                    if to_redirect == '':
+                        to_redirect = '/'
 
-                    return HttpResponseRedirect(redirect, {'user': user})
+                    return HttpResponseRedirect(to_redirect, {'user': user})
                 else:
-                    return HttpResponse('Disabled account')
+                    messages.error(request, 'Disabled Account!!')
+                    return redirect("/")
             else:
-                return HttpResponse('Invalid login')
+                messages.error(request, 'Invalid Login!!')
+                return redirect("/")
     else:
-        redirect = request.GET.get('next', '')
-        request.session['next'] = redirect
+        to_redirect = request.GET.get('next', '')
+        request.session['next'] = to_redirect
         form = LoginForm()
         return render(request, 'registration/login.html', {'form': form})

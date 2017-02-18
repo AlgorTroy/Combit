@@ -32,7 +32,6 @@ urlpatterns = [
     url(r'^logout/$', logout_page, name='logout'),
     url(r'^accounts/login/$', login), # If user is not login it will redirect to login page
     url(r'^register/$', register, name='register'),
-    url(r'^home/$', home, name='home'),
     url(r'^login/$', user_login, name='login'),
     url(r'^job/upload/$', upload_job, name='upload_job'),
     url(r'^jobs/by/category/(?P<slug>[\w]+)/$', jobs_by_category, name='jobs_by_category'),

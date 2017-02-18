@@ -24,8 +24,7 @@ def home(request):
                  'Find Part-Time Jobs',
                  'Connect with People']
 
-    return render(request, 'newMaterialHome.html', {'crsl_images': crsl_images,
-                                                    'tag_lines': tag_lines})
+    return render(request, 'home.html', {'crsl_images': crsl_images, 'tag_lines': tag_lines})
 
 @csrf_protect
 def register(request):
@@ -65,6 +64,7 @@ def user_login(request):
                 if user.is_active:
                     login(request, user)
                     redirect = request.session['next']
+                    print("++++++++++++++++++++++++++", redirect)
                     del request.session['next']
 
                     print('==================', request.GET.get('next'))
@@ -74,7 +74,7 @@ def user_login(request):
             else:
                 return HttpResponse('Invalid login')
     else:
-        redirect = request.GET.get('next')
+        redirect = request.GET.get('next', '')
         request.session['next'] = redirect
         print('this?', redirect)
         form = LoginForm()

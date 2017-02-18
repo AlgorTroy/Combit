@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from taggit.managers import TaggableManager
+
 
 """
 Job : [Job_id, User_id, title, category, details, location, end_date,
@@ -41,6 +43,7 @@ class Job(models.Model):
     state = models.CharField(max_length=50, blank=True, null=True)
     zipcode = models.IntegerField(blank=True, null=True)
     slug = models.SlugField(max_length=250, blank=True)
+    tags = TaggableManager()
 
 
     def __str__(self):

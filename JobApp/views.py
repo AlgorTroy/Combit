@@ -26,7 +26,7 @@ def upload_job(request):
             job.status = 'open'
             job.user = request.user
             job.save()
-            message.success(request, 'Job posted successfully!!')
+            messages.success(request, 'Job posted successfully!!')
             return HttpResponseRedirect('/')
         else:
             messages.error(request, 'Unable to upload job! Retry')

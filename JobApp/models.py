@@ -46,7 +46,7 @@ class Job(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     end_date = models.DateField(blank=True, default=None, null=True)
     street = models.CharField(max_length=100, blank=True, null=True)
-    city = models.CharField(max_length=100, blank=True, null=True)
+    city = models.CharField(max_length=100, default='bangalore')
     state = models.CharField(max_length=50, blank=True, null=True)
     zipcode = models.IntegerField(blank=True, null=True)
     slug = models.SlugField(max_length=250, blank=True)

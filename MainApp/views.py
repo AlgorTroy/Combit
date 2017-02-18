@@ -9,6 +9,8 @@ from django.template import RequestContext
 from django.contrib.auth import authenticate, login
 from .forms import LoginForm
 
+# redirect = ''
+
 def home(request):
     return render(request, 'home.html', {})
 
@@ -37,8 +39,11 @@ def logout_page(request):
 
 
 def user_login(request):
+    # global redirect
+
     if request.method == 'POST':
         form = LoginForm(request.POST)
+
         if form.is_valid():
             cd = form.cleaned_data
             user = authenticate(username=cd['username'],
@@ -46,11 +51,18 @@ def user_login(request):
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    return HttpResponseRedirect('/', {'user': user})
+                    redirect = request.session['next']
+                    del request.session['next']
+
+                    print('==================', request.GET.get('next'))
+                    return HttpResponseRedirect(redirect, {'user': user})
                 else:
                     return HttpResponse('Disabled account')
             else:
                 return HttpResponse('Invalid login')
     else:
+        redirect = request.GET.get('next')
+        request.session['next'] = redirect
+        print('this?', redirect)
         form = LoginForm()
         return render(request, 'registration/login.html', {'form': form})

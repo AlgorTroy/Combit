@@ -10,7 +10,7 @@ class JobUploadForm(forms.ModelForm):
 
     class Meta:
         model = Job
-        fields = ['title', 'category', 'tags', 'details', 'street', 'city', 'state', 'end_date']
+        fields = ['title', 'category', 'tags', 'type', 'details', 'street', 'city', 'state', 'end_date']
 
     def __init__(self, *args, **kwargs):
         super(JobUploadForm, self).__init__(*args, **kwargs)

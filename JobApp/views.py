@@ -8,9 +8,11 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.template import RequestContext
 from django.contrib.auth import authenticate, login
 from .forms import JobUploadForm
-from .models import Category, Job
+from .models import Category, Job, Application
 from django.core.paginator import Paginator, EmptyPage,\
 PageNotAnInteger
+from django.contrib import messages
+from django.core.mail import send_mail
 
 
 @login_required
@@ -24,11 +26,11 @@ def upload_job(request):
             job.status = 'open'
             job.user = request.user
             job.save()
-            message = "Job posted successfully!!"
-            return HttpResponseRedirect('/', {'message': message})
+            message.success(request, 'Job posted successfully!!')
+            return HttpResponseRedirect('/')
         else:
-            message = "Unable to upload job! Retry"
-            return HttpResponseRedirect('/', {'message': message})
+            messages.error(request, 'Unable to upload job! Retry')
+            return HttpResponseRedirect('/')
     else:
         form = JobUploadForm()
         return render(request, 'job/upload.html', {'form': form})
@@ -72,7 +74,7 @@ def recent_jobs(request):
 
 def jobs_by_type(request, job_type):
     jobs = Job.objects.filter(type=job_type)
-    
+
     paginator = Paginator(jobs, 8)
     page = request.GET.get('page')
     try:
@@ -85,3 +87,41 @@ def jobs_by_type(request, job_type):
         jobs = paginator.page(paginator.num_pages)
 
     return render(request, 'job/by_filter.html', {'page': page, 'jobs': jobs})
+
+
+def search_engine(request):
+    pass
+
+
+def apply_job(request, job_id):
+    job = Job.objects.get(id=job_id)
+    if job.status == 'open':
+        application = Application.objects.get(user=request.user, job=job)
+        if not application:
+            application = Application()
+            application.user = request.user
+            application.job = job
+            application.status = 'applied'
+            application.save()
+            # notify_with_email(job.user)
+        else:
+            messages.error(request, 'You have already applied to this job!!')
+            return redirect("/")
+    elif job.status == 'closed':
+        messages.error(request, 'This job is closed!!')
+        return redirect("/")
+    else:
+        messages.error(request, 'Oops!! This job is already taken')
+        return redirect("/")
+
+    return HttpResponseRedirect("")
+
+def notify_with_email(user):
+
+    send_mail(
+    'Subject here',
+    'Here is the message.',
+    'azurathena@gmail.com',
+    [user.email],
+    fail_silently=False,
+    )

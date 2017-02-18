@@ -8,9 +8,22 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.template import RequestContext
 from django.contrib.auth import authenticate, login
 from .forms import LoginForm
+from django.contrib.staticfiles.templatetags.staticfiles import static
+
 
 def home(request):
-    return render(request, 'home.html', {})
+    # CHANGED to new home just add home.html at any error
+
+    crsl_images = [static('img/carousel/home-bg.jpg'),
+                   static('img/carousel/home-bg.jpg'),
+                   static('img/carousel/contact-bg.jpg')]
+
+    tag_lines = ['Organize Events',
+                 'Find Part-Time Jobs',
+                 'Connect with People']
+
+    return render(request, 'newMaterialHome.html', {'crsl_images': crsl_images,
+                                                    'tag_lines': tag_lines})
 
 @csrf_protect
 def register(request):

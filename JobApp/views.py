@@ -36,7 +36,7 @@ def upload_job(request):
 
 def jobs_by_category(request, slug):
     jobs = Job.objects.filter(category__slug=slug)
-    paginator = Paginator(jobs, 2)
+    paginator = Paginator(jobs, 8)
     page = request.GET.get('page')
     try:
         jobs = paginator.page(page)
@@ -51,7 +51,29 @@ def jobs_by_category(request, slug):
 
 def jobs_by_user(request, username):
     jobs = Job.objects.filter(user__username=username)
-    paginator = Paginator(jobs, 2)
+    paginator = Paginator(jobs, 8)
+    page = request.GET.get('page')
+    try:
+        jobs = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer deliver the first page
+        jobs = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range deliver last page of results
+        jobs = paginator.page(paginator.num_pages)
+
+    return render(request, 'job/by_filter.html', {'page': page, 'jobs': jobs})
+
+def recent_jobs(request):
+    jobs = Job.objects.all().order_by('-created_at')[:5]
+
+    return render(request, 'home.html', {'recent_jobs': jobs})
+
+
+def jobs_by_type(request, job_type):
+    jobs = Job.objects.filter(type=job_type)
+
+    paginator = Paginator(jobs, 8)
     page = request.GET.get('page')
     try:
         jobs = paginator.page(page)

@@ -2,6 +2,8 @@
 <html>
 
 <head>
+    <!-- Animation Link animate.css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <!--Import Google Icon Font-->
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
@@ -84,7 +86,7 @@
     </div>
 
     <h2 id="content-header" class="center"> Things You Can Do </h2>
-    <div id="content_container" class="container">
+    <div id="content_container-1" class="container">
         <div class="row">
             <div class="input-field col s4">
                 <a href="#">
@@ -122,7 +124,7 @@
         </div>
     </div>
 
-    <div id="content_container" class="container">
+    <div id="content_container-2" class="container">
         <div class="row">
             <div class="input-field col s4">
                 <a href="#">
@@ -175,90 +177,78 @@
         <div class="row">
             <h4 id="content-header">Recent Jobs</h4>
             <div class="col s6">
+                {%for recent_job in recent_jobs%}
                 <div class="section">
                     <div class="row">
                         <div class="col s3">
-                            <a href="#"><i class="large material-icons left">invert_colors</i></a>
+                            <a href="jobs/by/category/{{recent_job.category.slug}}"><i class="large material-icons left">invert_colors</i></a>
                         </div>
                         <div class="col s7">
                             <div class="row">
-                                <h5 id="content-header">Singer for Event</h5>
+                                <h5 id="content-header">{{recent_job.title}}</h5>
                             </div>
                             <div class="row">
                                 <div class="col 4">
-                                    <i class="material-icons">face</i> Posted By
+                                    <i class="material-icons">face</i>{{recent_job.user.username}}
                                 </div>
                                 <div class="col 4">
-                                    <i class="material-icons">location_on</i> Bangalore
+                                    <i class="material-icons">location_on</i>{{recent_job.city}}
                                 </div>
                                 <div class="col 4">
-                                    <i class="material-icons">attach_money</i> 15000/-
+                                    <i class="material-icons">attach_money</i>1000
                                 </div>
                             </div>
                         </div>
                         <div class="col s2">
-                            <p>Full Time</p>
+                            <a href="jobs/by/type/{{recent_job.type}}">
+                                <p>{{recent_job.type}}</p>
+                            </a>
                         </div>
                     </div>
                 </div>
-                <div class="section">
-                    <div class="row">
-                        <div class="col s3">
-                            <a href="#"><i class="large material-icons left">invert_colors</i></a>
-                        </div>
-                        <div class="col s7">
-                            <div class="row">
-                                <h5 id="content-header">Singer for Event</h5>
-                            </div>
-                            <div class="row">
-                                <div class="col 4">
-                                    <i class="material-icons">face</i> Posted By
-                                </div>
-                                <div class="col 4">
-                                    <i class="material-icons">location_on</i> Bangalore
-                                </div>
-                                <div class="col 4">
-                                    <i class="material-icons">attach_money</i> 15000/-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col s2">
-                            <p>Full Time</p>
-                        </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Top 5 jobs list -->
+
+
+</body>
+<footer id="myfooter" class="page-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col l6 s12">
+                <h5 class="white-text">Join The Cause</h5>
+                <p class="grey-text text-lighten-4">
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes </p>
+                    <a id="" class="waves-effect waves-light btn-large">
+                        <i class="material-icons">group_add</i>
+                    </a>
+            </div>
+            <div class="col l4 offset-l2 s12">
+                <div id="social-icons" class="row">
+                    <div id="social-icon-holder-1" class="col s3">
+                        <a class="grey-text text-lighten-3 fa-4x " href="#!"><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
                     </div>
-                </div>
-                <div class="section">
-                    <div class="row">
-                        <div class="col s3">
-                            <a href="#"><i class="large material-icons left">invert_colors</i></a>
-                        </div>
-                        <div class="col s7">
-                            <div class="row">
-                                <h5 id="content-header">Singer for Event</h5>
-                            </div>
-                            <div class="row">
-                                <div class="col 4">
-                                    <i class="material-icons">face</i> Posted By
-                                </div>
-                                <div class="col 4">
-                                    <i class="material-icons">location_on</i> Bangalore
-                                </div>
-                                <div class="col 4">
-                                    <i class="material-icons">attach_money</i> 15000/-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col s2">
-                            <p>Full Time</p>
-                        </div>
+                    <div id="social-icon-holder-2" class="col s3">
+                        <a class="grey-text text-lighten-3 fa-4x " href="#!"><i class="fa fa-github" aria-hidden="true"></i></a>
+                    </div>
+                    <div id="social-icon-holder-3" class="col s3">
+                        <a class="grey-text text-lighten-3 fa-4x " href="#!"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                    </div>
+                    <div id="social-icon-holder-4" class="col s3">
+                        <a class="grey-text text-lighten-3 fa-4x " href="#!"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
-
-</body>
+    <div class="footer-copyright">
+        <div class="container">
+            © 2017 Copyright Text
+        </div>
+    </div>
+</footer>
 
 </html>

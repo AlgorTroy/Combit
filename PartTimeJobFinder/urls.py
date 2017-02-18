@@ -36,4 +36,6 @@ urlpatterns = [
     url(r'^job/upload/$', upload_job, name='upload_job'),
     url(r'^jobs/by/category/(?P<slug>[-\w]+)/$', jobs_by_category, name='jobs_by_category'),
     url(r'^jobs/by/user/(?P<username>[a-zA-Z0-9_]+)/$', jobs_by_user, name='jobs_by_user'),
+    url(r'^jobs/recent/$', recent_jobs, name='recent_jobs'),
+    url(r'^jobs/by/type/(?P<job_type>[a-zA-Z_]+)/$', jobs_by_type, name='jobs_by_type'),
 ]

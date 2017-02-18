@@ -4,7 +4,7 @@ from .models import Category, Job, Application, Interest
 admin.site.register([Application, Interest])
 
 class JobAdmin(admin.ModelAdmin):
-    search_fields = ('title', 'details')
+    search_fields = ('title', 'details', 'tags')
     prepopulated_fields = {'slug': ('title',)}
 
 admin.site.register(Job, JobAdmin)

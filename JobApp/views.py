@@ -66,6 +66,22 @@ def jobs_by_user(request, username):
 
 def recent_jobs(request):
     jobs = Job.objects.all().order_by('-created_at')[:5]
-    for job in jobs:
-        print("*********************************************", job)
+
     return render(request, 'home.html', {'recent_jobs': jobs})
+
+
+def jobs_by_type(request, job_type):
+    jobs = Job.objects.filter(type=job_type)
+    
+    paginator = Paginator(jobs, 8)
+    page = request.GET.get('page')
+    try:
+        jobs = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer deliver the first page
+        jobs = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range deliver last page of results
+        jobs = paginator.page(paginator.num_pages)
+
+    return render(request, 'job/by_filter.html', {'page': page, 'jobs': jobs})

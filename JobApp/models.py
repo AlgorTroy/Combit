@@ -24,17 +24,24 @@ class Category(models.Model):
 
 
 class Job(models.Model):
-    choices = (
+    job_status = (
         ('open', 'Open'),
         ('closed', 'Closed'),
         ('wip', 'WIP'),
         ('completed', 'Completed')
     )
+
+    job_types = (
+        ('part_time', 'Part-time'),
+        ('internship', 'Internship'),
+        ('event', 'Event'),
+        ('social_service', 'Social service')
+    )
     title = models.CharField(max_length=200)
     category = models.ForeignKey(Category, null=True, on_delete=models.SET_NULL)
     user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
     details = models.TextField(max_length=1000)
-    status = models.CharField(max_length=10, choices=choices, default='open')
+    status = models.CharField(max_length=10, choices=job_status, default='open')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     end_date = models.DateField(blank=True, default=None, null=True)
@@ -44,6 +51,7 @@ class Job(models.Model):
     zipcode = models.IntegerField(blank=True, null=True)
     slug = models.SlugField(max_length=250, blank=True)
     tags = TaggableManager()
+    type = models.CharField(max_length=10, choices=job_types, default='part_time')
 
 
     def __str__(self):

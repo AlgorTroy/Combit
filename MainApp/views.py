@@ -11,6 +11,8 @@ from .forms import LoginForm
 from django.contrib.staticfiles.templatetags.staticfiles import static
 
 
+# redirect = ''
+
 def home(request):
     # CHANGED to new home just add home.html at any error
 
@@ -50,8 +52,11 @@ def logout_page(request):
 
 
 def user_login(request):
+    # global redirect
+
     if request.method == 'POST':
         form = LoginForm(request.POST)
+
         if form.is_valid():
             cd = form.cleaned_data
             user = authenticate(username=cd['username'],
@@ -59,11 +64,18 @@ def user_login(request):
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    return HttpResponseRedirect('/', {'user': user})
+                    redirect = request.session['next']
+                    del request.session['next']
+
+                    print('==================', request.GET.get('next'))
+                    return HttpResponseRedirect(redirect, {'user': user})
                 else:
                     return HttpResponse('Disabled account')
             else:
                 return HttpResponse('Invalid login')
     else:
+        redirect = request.GET.get('next')
+        request.session['next'] = redirect
+        print('this?', redirect)
         form = LoginForm()
         return render(request, 'registration/login.html', {'form': form})

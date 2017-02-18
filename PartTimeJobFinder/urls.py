@@ -14,10 +14,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url, include
-from MainApp.views import logout_page, register, home, login
+from MainApp.views import *
+from JobApp.views import *
 # from django.contrib.auth.views import login
 from django.contrib import admin
-from MainApp import views
 
 
 # urlpatterns = [
@@ -27,11 +27,13 @@ from MainApp import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', views.home, name='home'),
+    url(r'^$', home, name='home'),
     # url(r'^login/$', login, name='login'),
-    url(r'^logout/$', logout_page, name='logout_page'),
+    url(r'^logout/$', logout_page, name='logout'),
     url(r'^accounts/login/$', login), # If user is not login it will redirect to login page
     url(r'^register/$', register, name='register'),
     url(r'^home/$', home, name='home'),
-    url(r'^login/$', views.user_login, name='login'),
+    url(r'^login/$', user_login, name='login'),
+    url(r'^job/upload/$', upload_job, name='upload_job'),
+    url(r'^jobs/by/category/(?P<slug>[\w]+)/$', jobs_by_category, name='jobs_by_category'),
 ]

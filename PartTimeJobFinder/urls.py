@@ -41,4 +41,5 @@ urlpatterns = [
     url(r'^job/apply/(?P<job_id>[0-9]+)/$', apply_job, name='apply_job'),
     url(r'^about/$', about, name='about'),
 
+
 ]

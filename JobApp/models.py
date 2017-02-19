@@ -46,7 +46,7 @@ class Job(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     end_date = models.DateField(blank=True, default=None, null=True)
     street = models.CharField(max_length=100, blank=True, null=True)
-    city = models.CharField(max_length=100, default='bangalore')
+    city = models.CharField(max_length=100, default='Bangalore', blank=False, null=False)
     state = models.CharField(max_length=50, blank=True, null=True)
     zipcode = models.IntegerField(blank=True, null=True)
     slug = models.SlugField(max_length=250, blank=True)
@@ -81,6 +81,7 @@ class Application(models.Model):
 
 
 class Interest(models.Model):
+    
     user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, null=True, on_delete=models.CASCADE)
     strength = models.IntegerField()

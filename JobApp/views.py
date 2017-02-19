@@ -30,7 +30,7 @@ def upload_job(request):
             return HttpResponseRedirect('/')
         else:
             messages.error(request, 'Unable to upload job! Retry')
-            return HttpResponseRedirect('/')
+            return redirect(request.path)
     else:
         form = JobUploadForm()
         return render(request, 'job/upload.html', {'form': form})
@@ -105,19 +105,18 @@ def apply_job(request, job_id):
             application.save()
             # notify_with_email(job.user)
             messages.success(request, 'Successfully applied to job: '+job.title)
-            return redirect("/")
+            return redirect(request.path)
 
         else:
             messages.error(request, 'You have already applied to this job!!')
-            return redirect("/")
+            return redirect(request.path)
     elif job.status == 'closed':
         messages.error(request, 'This job is closed!!')
-        return redirect("/")
+        return redirect(request.path)
     else:
         messages.error(request, 'Oops!! This job is already taken')
-        return redirect("/")
+        return redirect(request.path)
 
-    return HttpResponseRedirect("")
 
 def notify_with_email(user):
 

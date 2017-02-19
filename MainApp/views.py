@@ -44,7 +44,11 @@ def register(request):
             )
             user.save()
             login(request, user)
-            return HttpResponseRedirect('/')
+            return redirect(request.path)
+        else:
+            messages.error(request, 'Wrong data!! Please retry')
+            return redirect(request.path)
+
     else:
         form = RegistrationForm()
         return render(request, 'registration/register.html', {'form': form})
@@ -76,10 +80,11 @@ def user_login(request):
                     return HttpResponseRedirect(to_redirect, {'user': user})
                 else:
                     messages.error(request, 'Disabled Account!!')
-                    return redirect("/")
+                    return redirect(request.path)
             else:
                 messages.error(request, 'Invalid Login!!')
-                return redirect("/")
+                # return redirect("/")
+                return redirect(request.path)
     else:
         to_redirect = request.GET.get('next', '')
         request.session['next'] = to_redirect

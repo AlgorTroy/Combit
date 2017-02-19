@@ -9,7 +9,9 @@ from django.template import RequestContext
 from django.contrib.auth import authenticate, login
 from .forms import LoginForm
 from django.contrib.staticfiles.templatetags.staticfiles import static
+from JobApp.models import Job
 from django.contrib import messages
+
 
 # redirect = ''
 
@@ -23,8 +25,12 @@ def home(request):
     tag_lines = ['Organize Events',
                  'Find Part-Time Jobs',
                  'Connect with People']
-
-    return render(request, 'home.html', {'crsl_images': crsl_images, 'tag_lines': tag_lines})
+    jobs = Job.objects.all().order_by('-created_at')[:5]
+    return render(request,
+                  'home.html',
+                  {'crsl_images': crsl_images,
+                   'tag_lines': tag_lines,
+                    'recent_jobs': jobs})
 
 @csrf_protect
 def register(request):

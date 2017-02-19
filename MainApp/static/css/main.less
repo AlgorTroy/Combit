@@ -44,7 +44,23 @@ body {
   border-bottom: 3px solid @tertiary-trans;
 }
 
-#content_container a{
+#content_container-1{
+  -vendor-animation-duration: 10s;
+  -vendor-animation-delay: 2s;
+  -vendor-animation-iteration-count: 1;
+}
+
+#content_container-2{
+  -vendor-animation-duration: 10s;
+  -vendor-animation-delay: 2s;
+  -vendor-animation-iteration-count: 1;
+}
+
+#content_container-1 a{
+  color: @tertiary;
+}
+
+#content_container-2 a{
   color: @tertiary;
 }
 
@@ -63,4 +79,39 @@ body {
 
 #main_content_container{
   background-color: transparent;
+}
+
+.section{
+  border-bottom:1px dotted @tertiary;
+}
+
+#explore_more{
+  margin-top: 100px;
+  width: 100%;
+  color:@secondary;
+}
+
+#common_left{
+  float: left;
+  display: inline-block;
+}
+#common_right{
+  float:right;
+  display: inline-block;
+}
+
+#recent_job_container{
+  float: right;
+  text-align: center;
+}
+
+#myfooter{
+  background-color:@secondary-trans;
+}
+
+#social-icons{
+  display: inline-block;
+  float: left;
+  margin-left: 20%;
+  margin-top: 20%;
 }

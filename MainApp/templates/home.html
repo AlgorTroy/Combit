@@ -2,6 +2,8 @@
 <html>
 
 <head>
+    <!-- Animation Link animate.css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <!--Import Google Icon Font-->
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
@@ -40,10 +42,10 @@
                     <i class="material-icons left">invert_colors</i>Diciplus</a>
                 <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
-                    <li><a href="sass.html"><i class="material-icons left">home</i>Home</a></li>
-                    <li><a href="badges.html"><i class="material-icons left">school</i>Student Portal</a></li>
+                    <li><a href="/"><i class="material-icons left">home</i>Home</a></li>
+                    <li><a href="#"><i class="material-icons left">school</i>Student Portal</a></li>
                     <li><a href="job/upload/"><i class="material-icons left">work</i>Upload Job</a></li>
-                    <li><a href="mobile.html"><i class="material-icons left">info</i>About</a></li>
+                    <li><a href="#"><i class="material-icons left">info</i>About</a></li>
                     {% if user.is_authenticated %}
                     <li><a href="logout/"><i class="material-icons left">account_circle</i>{{ user.username }}</a></li>
                     {% else %}
@@ -95,7 +97,7 @@
     </div>
 
     <h2 id="content-header" class="center"> Things You Can Do </h2>
-    <div id="content_container" class="container">
+    <div id="content_container-1" class="container">
         <div class="row">
             <div class="input-field col s4">
                 <a href="#">
@@ -105,7 +107,7 @@
                 </a>
                 <div class="container">
                     <a href="#"><h3>Find Events</h3></a>
-                    <h5>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes </h5>
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes </p>
                 </div>
             </div>
             <div class="input-field col s4">
@@ -116,7 +118,7 @@
                 </a>
                 <div class="container">
                     <a href="#"><h3>Organize Events</h3></a>
-                    <h5>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes </h5>
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes </p>
                 </div>
             </div>
             <div class="input-field col s4">
@@ -127,13 +129,13 @@
                 </a>
                 <div class="container">
                     <a href="#"><h3>Explore Events</h3></a>
-                    <h5>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes </h5>
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes </p>
                 </div>
             </div>
         </div>
     </div>
 
-    <div id="content_container" class="container">
+    <div id="content_container-2" class="container">
         <div class="row">
             <div class="input-field col s4">
                 <a href="#">
@@ -143,7 +145,7 @@
                 </a>
                 <div class="container">
                     <a href="#"><h3>Find Events</h3></a>
-                    <h5>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes </h5>
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes </p>
                 </div>
             </div>
             <div class="input-field col s4">
@@ -154,7 +156,7 @@
                 </a>
                 <div class="container">
                     <a href="#"><h3>Organize Events</h3></a>
-                    <h5>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes </h5>
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes </p>
                 </div>
             </div>
             <div class="input-field col s4">
@@ -165,13 +167,104 @@
                 </a>
                 <div class="container">
                     <a href="#"><h3>Explore Events</h3></a>
-                    <h5>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes </h5>
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes </p>
                 </div>
             </div>
         </div>
     </div>
+
+    <div id="explore_more" class="container">
+        <div class="row">
+            <div class="col s5 offset-s5">
+                <a id="" class="waves-effect waves-light btn-large">
+                    <i class="material-icons">explore</i> Explore More
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Top 5 jobs list -->
+    <div class="recent_job_container" class="container">
+        <div class="row">
+            <h4 id="content-header">Recent Jobs</h4>
+            <div class="col s6">
+                {%for recent_job in recent_jobs%}
+                <div class="section">
+                    <div class="row">
+                        <div class="col s3">
+                            <a href="jobs/by/category/{{recent_job.category.slug}}"><i class="large material-icons left">invert_colors</i></a>
+                        </div>
+                        <div class="col s7">
+                            <div class="row">
+                                <h5 id="content-header">{{recent_job.title}}</h5>
+                            </div>
+                            <div class="row">
+                                <div class="col 4">
+                                    <i class="material-icons">face</i>{{recent_job.user.username}}
+                                </div>
+                                <div class="col 4">
+                                    <i class="material-icons">location_on</i>{{recent_job.city}}
+                                </div>
+                                <div class="col 4">
+                                    <i class="material-icons">attach_money</i>1000
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col s2">
+                            <a href="jobs/by/type/{{recent_job.type}}">
+                                <p>{{recent_job.type}}</p>
+                            </a>
+                        </div>
+                        <div class="col s2">
+                            <a href="job/apply/{{recent_job.id}}">
+                                <p>Apply</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Top 5 jobs list -->
 
 
 </body>
+<footer id="myfooter" class="page-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col l6 s12">
+                <h5 class="white-text">Join The Cause</h5>
+                <p class="grey-text text-lighten-4">
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes </p>
+                    <a id="" class="waves-effect waves-light btn-large">
+                        <i class="material-icons">group_add</i>
+                    </a>
+            </div>
+            <div class="col l4 offset-l2 s12">
+                <div id="social-icons" class="row">
+                    <div id="social-icon-holder-1" class="col s3">
+                        <a class="grey-text text-lighten-3 fa-4x " href="#!"><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
+                    </div>
+                    <div id="social-icon-holder-2" class="col s3">
+                        <a class="grey-text text-lighten-3 fa-4x " href="#!"><i class="fa fa-github" aria-hidden="true"></i></a>
+                    </div>
+                    <div id="social-icon-holder-3" class="col s3">
+                        <a class="grey-text text-lighten-3 fa-4x " href="#!"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                    </div>
+                    <div id="social-icon-holder-4" class="col s3">
+                        <a class="grey-text text-lighten-3 fa-4x " href="#!"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            © 2017 Copyright Text
+        </div>
+    </div>
+</footer>
 
 </html>

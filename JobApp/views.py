@@ -26,7 +26,7 @@ def upload_job(request):
             job.status = 'open'
             job.user = request.user
             job.save()
-            message.success(request, 'Job posted successfully!!')
+            messages.success(request, 'Job posted successfully!!')
             return HttpResponseRedirect('/')
         else:
             messages.error(request, 'Unable to upload job! Retry')
@@ -96,7 +96,7 @@ def search_engine(request):
 def apply_job(request, job_id):
     job = Job.objects.get(id=job_id)
     if job.status == 'open':
-        application = Application.objects.get(user=request.user, job=job)
+        application = Application.objects.filter(user=request.user, job=job)
         if not application:
             application = Application()
             application.user = request.user
@@ -104,6 +104,9 @@ def apply_job(request, job_id):
             application.status = 'applied'
             application.save()
             # notify_with_email(job.user)
+            messages.success(request, 'Successfully applied to job: '+job.title)
+            return redirect("/")
+
         else:
             messages.error(request, 'You have already applied to this job!!')
             return redirect("/")

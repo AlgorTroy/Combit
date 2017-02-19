@@ -13,6 +13,11 @@
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://use.fontawesome.com/a3ec1b34e4.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="semantic/dist/semantic.min.js"></script>
     <title>MYSITE</title>
 
 </head>
@@ -24,6 +29,7 @@
     <script type="text/javascript" src="{% static 'materialize/js/materialize.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'materialize/js/init.js' %}"></script>
 
+
     <div id="main_nav_bar" class="navbar-fixed">
         <nav class="transparent">
             <div class="nav-wrapper">
@@ -33,14 +39,26 @@
                 <ul class="right hide-on-med-and-down">
                     <li><a href="/"><i class="material-icons left">home</i>Home</a></li>
                     <li><a href="#"><i class="material-icons left">school</i>Student Portal</a></li>
+                    {% if user.is_authenticated %}
+                    <li><a href="#"><i class="material-icons left">event</i>Organize Events</a></li>
+                    {% endif %}
                     <li><a href="job/upload/"><i class="material-icons left">work</i>Upload Job</a></li>
                     <li><a href="about/"><i class="material-icons left">info</i>About</a></li>
-                    {% if user.is_authenticated %}
-                    <li><a href="logout/"><i class="material-icons left">account_circle</i>{{ user.username }}</a></li>
-                    {% else %}
-                    <li><a href="register/"><i class="material-icons left">account_circle</i>Sign Up</a></li>
-                    <li><a href="login/"><i class="material-icons left">account_circle</i>Login</a></li>
-                    {% endif %}
+                    <!-- Dropdown Trigger -->
+                    <li><a class='dropdown-button btn-flat' data-beloworigin="true" href='#' data-activates='dropdown'><i style="color:white;"class="material-icons left">account_circle</i></a></li>
+                    <!-- Dropdown Structure -->
+                    <ul id='dropdown' class='dropdown-content'>
+                        {% if user.is_authenticated %}
+                        <li><a href="#"><i class="material-icons left">account_circle</i>{{user.username}}</a></li>
+                        <li><a href="#"><i class="material-icons left">dashboard</i>DashBoard</a></li>
+                        <li><a href="#"><i class="material-icons left">account_balance_wallet</i>Accounts</a></li>
+                        <li><a href="#"><i class="material-icons left">settings</i>Settings</a></li>
+                        <li><a href="logout/"><i class="material-icons left">exit_to_app</i>Logout</a></li>
+                        {% else %}
+                        <li><a href="register/"><i class="material-icons left">person_add</i>Sign Up</a></li>
+                        <li><a href="login/"><i class="material-icons left">account_circle</i>Login</a></li>
+                        {% endif %}
+                    </ul>
                 </ul>
             </div>
         </nav>
@@ -176,10 +194,10 @@
     <ul class="messages">
         {% for message in messages %}
         <li class="{{ message.tags }}">
-          <script type="text/javascript">
-              var msg = "{{ message }}";
-              Materialize.toast(msg, 4000); // 4000 is the duration of the toast
-          </script>
+            <script type="text/javascript">
+                var msg = "{{ message }}";
+                Materialize.toast(msg, 4000); // 4000 is the duration of the toast
+            </script>
         </li>
         {% endfor %}
     </ul>

@@ -39,5 +39,5 @@ urlpatterns = [
     url(r'^jobs/recent/$', recent_jobs, name='recent_jobs'),
     url(r'^jobs/by/type/(?P<job_type>[a-zA-Z_]+)/$', jobs_by_type, name='jobs_by_type'),
     url(r'^job/apply/(?P<job_id>[0-9]+)/$', apply_job, name='apply_job'),
-    
+
 ]
